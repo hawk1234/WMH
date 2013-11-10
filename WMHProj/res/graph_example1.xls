@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graph>
+<node label="A"/>
+<node label="B"/>
+<node label="C"/>
+<realtion node1="A" node2="B"/>
+<realtion node1="A" node2="C"/>
+</graph>

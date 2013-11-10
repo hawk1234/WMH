@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graph>
+<node label="A"/>
+<node label="B"/>
+<node label="C"/>
+<node label="D"/>
+<node label="E"/>
+<node label="F"/>
+<realtion node1="A" node2="B"/>
+<realtion node1="A" node2="D"/>
+<realtion node1="A" node2="C"/>
+<realtion node1="D" node2="B"/>
+<realtion node1="D" node2="E"/>
+<realtion node1="B" node2="C"/>
+<realtion node1="C" node2="F"/>
+</graph>
