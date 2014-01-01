@@ -6,12 +6,17 @@ package wmh.project;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import wmh.project.algorithm.AlgorithmStep;
+import wmh.project.graph.model.Ant;
 import wmh.project.graph.model.Graph;
 import wmh.project.graph.model.GraphUtil;
 import wmh.project.graph.model.Node;
-import wmh.project.visual.graph.VisualUtil;
+import wmh.project.visual.graph.GraphControler;
 
 /**
  *
@@ -29,11 +34,25 @@ public class WMHMain {
         frame.setSize(new Dimension(800, 600));
    
         frame.setLayout(new BorderLayout());
+        final GraphControler controler = new GraphControler(GraphUtil.loadGraph("./res/graph_example2.xls"));
 //        JScrollPane pane = new JScrollPane(VisualUtil.getVisualGraph(createGraph1()));
-        JScrollPane pane = new JScrollPane(VisualUtil.getVisualGraph(createGraph2()));
+//        JScrollPane pane = new JScrollPane(VisualUtil.getVisualGraph(createGraph2()));
+        JScrollPane pane = new JScrollPane(controler.getVisualGraph());
+//        JScrollPane pane = new JScrollPane(VisualUtil.getVisualGraph(GraphUtil.loadGraph("./res/graph_example1.xls")));
         frame.add(pane, BorderLayout.CENTER);
         frame.setVisible(true);
+        JButton animButt = new JButton("DO ANIM");
+        animButt.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ant ant = controler.getGraph().getNode("A").getAnts().iterator().next();
+                controler.animate(new AlgorithmStep("A", "B", ant.getId()));
+            }
+        });
+        frame.add(animButt, BorderLayout.SOUTH);
         
+        controler.getGraph().testInit();
 //        GraphUtil.saveGraph(createGraph2(), "./res/graph_example2.xls");
 //        GraphUtil.saveGraph(createGraph1(), "./res/graph_example1.xls");
     }

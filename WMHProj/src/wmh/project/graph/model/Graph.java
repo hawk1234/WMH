@@ -16,6 +16,7 @@ public class Graph {
 
     private final ArrayList<Node> nodes = new ArrayList<Node>();
     private final ArrayList<Relation> relations = new ArrayList<Relation>();   
+    private AntHill antHill = new AntHill();
     
     public Graph() {}
     
@@ -111,5 +112,18 @@ public class Graph {
             }
         }
         return null;
+    }
+    
+    
+    //FOR TEST
+    public void testInit(){
+        int antMax = 20;
+        for(Node node : nodes){
+            int antCount = (int) Math.round(antMax*Math.random()) + 1;
+            while(antCount > 0){
+                node.addAnt(antHill.create());
+                --antCount;
+            }
+        }
     }
 }

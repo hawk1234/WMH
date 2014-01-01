@@ -23,13 +23,17 @@ public class VisualGraph extends GraphScene<Node, Relation> {
     private LayerWidget backgroundLayer = new LayerWidget (this);
     private LayerWidget mainLayer = new LayerWidget (this);
     private LayerWidget connectionLayer = new LayerWidget (this);
+    private LayerWidget animationLayer = new LayerWidget(this);
     
     private SceneLayout layout = LayoutFactory.createSceneGraphLayout(this, new GridGraphLayout<Node, Relation>().setChecker(true));
 
     public VisualGraph() {
+        
         addChild(backgroundLayer);
-        addChild(mainLayer);
         addChild(connectionLayer);
+        addChild(mainLayer);
+        addChild(animationLayer);
+        
         
         getActions().addAction(ActionFactory.createZoomAction());
         getActions().addAction(ActionFactory.createPanAction());
@@ -65,5 +69,19 @@ public class VisualGraph extends GraphScene<Node, Relation> {
     
     public void layout(){
         layout.invokeLayout();
+    }
+    
+    public void addToAnimationLayer(Widget widget){
+        animationLayer.addChild(widget);
+    }
+    
+    public void removeFromAnimationLayer(Widget widget){
+        animationLayer.removeChild(widget);
+    }
+    
+    public void dispose(){
+        for(Widget w : mainLayer.getChildren()){
+            ((NodeWidget) w).dispose();
+        }
     }
 }
