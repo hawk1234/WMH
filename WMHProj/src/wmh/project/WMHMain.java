@@ -8,14 +8,17 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
 import wmh.project.algorithm.AlgorithmStep;
+import wmh.project.framework.DialogDisplayer;
 import wmh.project.graph.model.Ant;
 import wmh.project.graph.model.Graph;
 import wmh.project.graph.model.GraphUtil;
 import wmh.project.graph.model.Node;
+import wmh.project.ui.MainPanel;
+import wmh.project.ui.WMHMenu;
 import wmh.project.visual.graph.GraphControler;
 
 /**
@@ -28,17 +31,62 @@ public class WMHMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+//        test();
+        init();
+    }
+    
+    private static final void init(){
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                DialogDisplayer.showSimpleErrorDialog("Unexpected error has occurred, program will now close.");
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        });
+        
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(WMHMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(WMHMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(WMHMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex){
+            Logger.getLogger(WMHMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JFrame frame = new JFrame("WMH");
+        JOptionPane.setRootFrame(frame);
+        frame.setSize(new Dimension(800, 600));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        
+        frame.setJMenuBar(new WMHMenu());
+        frame.getContentPane().add(MainPanel.getInstance(), BorderLayout.CENTER);        
+        
+        frame.setVisible(true);
+    }
+    
+    
+    
+    
+    
+    //<editor-fold defaultstate="collapsed" desc="TEST CODE">
+    private static final void test(){
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("WMH_TEST");
         frame.setSize(new Dimension(800, 600));
    
         frame.setLayout(new BorderLayout());
-        final GraphControler controler = new GraphControler(GraphUtil.loadGraph("./res/graph_example2.xls"));
+        final GraphControler controler = new GraphControler(GraphUtil.loadGraph("./res/graph_example2.xml"));
 //        JScrollPane pane = new JScrollPane(VisualUtil.getVisualGraph(createGraph1()));
 //        JScrollPane pane = new JScrollPane(VisualUtil.getVisualGraph(createGraph2()));
         JScrollPane pane = new JScrollPane(controler.getVisualGraph());
-//        JScrollPane pane = new JScrollPane(VisualUtil.getVisualGraph(GraphUtil.loadGraph("./res/graph_example1.xls")));
+//        JScrollPane pane = new JScrollPane(VisualUtil.getVisualGraph(GraphUtil.loadGraph("./res/graph_example1.xml")));
         frame.add(pane, BorderLayout.CENTER);
         frame.setVisible(true);
         JButton animButt = new JButton("DO ANIM");
@@ -58,7 +106,7 @@ public class WMHMain {
     }
     
     private static Graph createGraph1(){
-        Graph ret = new Graph();
+        Graph ret = new Graph("TEST");
         
         Node a = new Node("A");
         Node b = new Node("B");
@@ -73,7 +121,7 @@ public class WMHMain {
     }
     
     private static Graph createGraph2(){
-        Graph ret = new Graph();
+        Graph ret = new Graph("TEST");
         
         Node a = new Node("A");
         Node b = new Node("B");
@@ -99,4 +147,5 @@ public class WMHMain {
         
         return ret;
     }
+    //</editor-fold>
 }

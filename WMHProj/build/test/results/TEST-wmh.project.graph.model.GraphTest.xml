@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="MAREK-PC" name="wmh.project.graph.model.GraphTest" tests="3" time="0.118" timestamp="2013-12-15T16:39:54">
+<testsuite errors="0" failures="0" hostname="MAREK-PC" name="wmh.project.graph.model.GraphTest" tests="3" time="0.192" timestamp="2014-01-05T12:19:49">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="PL" />
@@ -438,7 +438,7 @@
     <property name="libs.jsp-compiler.maven-pom" value="" />
     <property name="libs.spring-webmvc.maven-pom" value="" />
     <property name="libs.Java-EE-GlassFish-v3.wsinterop" value="" />
-    <property name="run.jvmargs" value="" />
+    <property name="run.jvmargs" value="-enableassertions" />
     <property name="libs.ejb3-persistence.classpath" value="C:\Programy\NetBeans 7.1.1\java\modules\ext\hibernate\ejb3-persistence.jar" />
     <property name="libs.JAXB-ENDORSED.src" value="" />
     <property name="libs.spring-framework.javadoc" value="" />
@@ -459,8 +459,8 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="wmh.project.graph.model.GraphTest" name="testCreateSimpleGraph" time="0.0080" />
-  <testcase classname="wmh.project.graph.model.GraphTest" name="testLoadGraph" time="0.013" />
+  <testcase classname="wmh.project.graph.model.GraphTest" name="testCreateSimpleGraph" time="0.011" />
+  <testcase classname="wmh.project.graph.model.GraphTest" name="testLoadGraph" time="0.012" />
   <testcase classname="wmh.project.graph.model.GraphTest" name="testRemoveRel" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

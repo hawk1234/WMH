@@ -17,8 +17,11 @@ public class Graph {
     private final ArrayList<Node> nodes = new ArrayList<Node>();
     private final ArrayList<Relation> relations = new ArrayList<Relation>();   
     private AntHill antHill = new AntHill();
+    private final String name;
     
-    public Graph() {}
+    public Graph(String name) {
+        this.name = name;
+    }
     
     public boolean addNode(Node node){
         if(!containsNode(node.getLabel())){
@@ -112,6 +115,15 @@ public class Graph {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        if(name != null){
+            return name;
+        }else{
+            return super.toString();
+        }
     }
     
     

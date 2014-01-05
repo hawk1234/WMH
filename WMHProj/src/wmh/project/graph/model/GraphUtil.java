@@ -72,7 +72,7 @@ public class GraphUtil {
     }
     
     public static Graph loadGraph(String location){
-        Graph ret = new Graph();
+        Graph ret = new Graph(location);
         try {
             File fXmlFile = new File(location);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

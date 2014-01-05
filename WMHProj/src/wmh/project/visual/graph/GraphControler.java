@@ -42,6 +42,11 @@ public class GraphControler implements AnimatorListener{
         return vg.getView();
     }
     
+    public JComponent createEagleView(){
+        checkGraph();
+        return vg.createSatelliteView();
+    }
+    
     public void animate(AlgorithmStep step){
         checkGraph();
         Node source = graph.getNode(step.source);

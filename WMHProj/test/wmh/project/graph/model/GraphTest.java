@@ -35,7 +35,7 @@ public class GraphTest extends TestCase{
     }
     
     public void testLoadGraph(){
-        Graph graph = GraphUtil.loadGraph("./res/graph_example1.xls");
+        Graph graph = GraphUtil.loadGraph("./res/graph_example1.xml");
         
         assertNotNull(graph.getNode("A"));
         assertNotNull(graph.getNode("B"));
@@ -81,7 +81,7 @@ public class GraphTest extends TestCase{
     }
     
     private Graph simple(){
-        Graph graph = new Graph();
+        Graph graph = new Graph("TEST");
         
         Node a = new Node("A");
         Node b = new Node("B");
